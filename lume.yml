@@ -31,7 +31,7 @@ steps:
   check-requirements:
     run: pip-audit
   static-analysis:
-    run: mypy $PACKAGE_NAME tests | True
+    run: mypy $PACKAGE_NAME tests | true
   coverage:
     run: pytest -c tests/pytest.coverage.ini
   test:
