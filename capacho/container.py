@@ -96,7 +96,7 @@ class Container(metaclass=Singleton):
     def _get(self, base_class: type[Interface], impl_class: ImplClass) -> type[Interface]:
         available_implementations = Container.available(base_class)
         if impl_class not in available_implementations:
-            if self.get_error_handler:
+            if self.get_error_handler is not None:
                 self.get_error_handler(impl_class)
             else:
                 raise TypeError(
