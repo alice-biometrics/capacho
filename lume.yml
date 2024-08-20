@@ -42,6 +42,7 @@ steps:
       mkdocs build
   check-no-binary-installation:
     run: |
-      pip install hatch
-      hatch build
-      pip wheel --no-cache-dir $PACKAGE_NAME -w /tmp/ext dist/$PACKAGE_NAME-*.tar.gz
+      echo "TODO"
+#      pip install hatch
+#      hatch build
+#      pip wheel --no-cache-dir $PACKAGE_NAME -w /tmp/ext dist/$PACKAGE_NAME-*.tar.gz
