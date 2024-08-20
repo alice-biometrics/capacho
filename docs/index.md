@@ -9,7 +9,6 @@
 [![license](https://img.shields.io/github/license/alice-biometrics/capacho.svg)](https://github.com/alice-biometrics/capacho/blob/main/LICENSE)
 [![versions](https://img.shields.io/pypi/pyversions/capacho.svg)](https://github.com/alice-biometrics/capacho)
 
-
 <img src="https://github.com/alice-biometrics/custom-emojis/blob/master/images/alice_header.png?raw=true" width=auto>
 
 ## What is capacho 🧺?
