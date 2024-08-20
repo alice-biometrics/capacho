@@ -1,0 +1,69 @@
+name: Feature Request
+description: Suggest an idea or ask for a feature that you would like to have in capacho.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The `capacho 🧺` community is glad to see you here. Your help is greatly appreciated.
+
+        Please follow these instructions, fill every question, and do every step. 🙏
+
+        This will help `capacho 🧺` community to add new features, fix bug, review pull requests, etc.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: First Check
+      description: Please confirm and check all the following options.
+      options:
+        - label: I added a very descriptive title to this issue.
+          required: true
+        - label: I used the GitHub search to find a similar issue and didn't find it.
+          required: true
+        - label: I already read and followed all the [documentation](https://alice-biometrics.github.io/capacho/) and didn't find an answer.
+          required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description & Wanted Solution
+      description: |
+        What is your feature request?
+
+        Write a short description telling me what you are trying to solve and what you are currently doing.
+
+        Propose a solution.
+      placeholder: |
+        * Using `Result` class
+        * I would like it to have an extra parameter to configure unions.
+        * This could be useful to ... whatever
+    validations:
+      required: true
+
+  - type: textarea
+    id: wanted-code
+    attributes:
+      label: Wanted Code
+      description: Show me an example of how you would want the code to look like.
+      placeholder: |
+        from capacho import Result
+
+        result = Result(...)
+
+      render: python
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: |
+        Tell us about alternatives you've considered.
+      placeholder: |
+        Define a whatever that help on your feature request...
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Add any additional context information or screenshots you think are useful.

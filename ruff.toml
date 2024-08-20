@@ -1,0 +1,77 @@
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+    "docs",
+    "tests/conftest.py",
+    "__pycache__"
+]
+
+line-length = 120
+indent-width = 4
+
+# Assume Python 3.12
+target-version = "py312" # TODO: not sure about this
+
+[lint]
+ignore = [
+    "E731", # Allow assigning lambdas to variables. Link: https://docs.astral.sh/ruff/rules/lambda-assignment/
+    "B008", # FastAPI DI conflicts. Link: https://docs.astral.sh/ruff/rules/function-call-in-default-argument/
+    "B904", # FastAPI error response mechanism conflicts. Link: https://docs.astral.sh/ruff/rules/raise-without-from-inside-except/,
+    "E712", # To avoid issues with SQLAlchemy filters when using booleans
+    # "C901", # The code in a function is too complex. The team should refactor the code. If there are no resources available for refactoring, ignore on a case by case basis  Link: https://docs.astral.sh/ruff/rules/complex-structure/
+]
+select = [
+    "B",
+    "C",
+    "E",
+    "F",
+    "I",
+    "UP",
+    "SIM",
+    "W",
+]
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[lint.per-file-ignores]
+"__init__.py" = ["E402", "F403", "F405"] # Imports not on top, from * imports
+"public_api.py" = ["F401"] # Unused imports when declaring public APIs
+
+[format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
