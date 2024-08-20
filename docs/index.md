@@ -9,17 +9,8 @@
 [![license](https://img.shields.io/github/license/alice-biometrics/capacho.svg)](https://github.com/alice-biometrics/capacho/blob/main/LICENSE)
 [![versions](https://img.shields.io/pypi/pyversions/capacho.svg)](https://github.com/alice-biometrics/capacho)
 
+
 <img src="https://github.com/alice-biometrics/custom-emojis/blob/master/images/alice_header.png?raw=true" width=auto>
-
----
-
-
-
-**Documentation**: <a href="https://alice-biometrics.github.io/capacho/" target="_blank">https://alice-biometrics.github.io/capacho/</a>
-
-**Source Code**: <a href="https://github.com/alice-biometrics/capacho" target="_blank">https://github.com/alice-biometrics/capacho</a>
-
----
 
 ## What is capacho 🧺?
 
@@ -30,19 +21,3 @@ A tool for registering implementations and provisioning them with containers, fa
 If you want to create abstractions and implement their corresponding solutions, this approach is highly effective.
 It allows you to register implementations and define aliases for use within a container, making it particularly useful
 for configuring implementations via configuration files.
-
-## Installation 💻
-
-```console
-pip install capacho
-```
-
-## Contribute
-
-We'd love you to contribute to *capacho* 🥳🥳🥳🥳🥳🥳️️!
-
-For more information, check our [documentation](https://alice-biometrics.github.io/capacho/contributing/)
-
-## Contact 📬
-
-support@alicebiometrics.com

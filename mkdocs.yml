@@ -1,0 +1,91 @@
+site_name: capacho
+site_description: 🧙 capacho is a Python µframework that provides a simple, fully typed, monad-based result type ➡️ Result[Value, Error].
+strict: true
+site_url: https://github.com/alice-biometrics/capacho
+
+theme:
+  name: 'material'
+  custom_dir: 'docs/theme'
+  palette:
+  - media: "(prefers-color-scheme: light)"
+    scheme: default
+    primary: blue
+    accent: blue
+    toggle:
+      icon: material/lightbulb-outline
+      name: "Switch to dark mode"
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    primary: blue
+    accent: blue
+    toggle:
+      icon: material/lightbulb
+      name: "Switch to light mode"
+  features:
+    - content.tabs.link
+    - content.code.annotate
+    - content.code.copy
+
+  logo: 'logo-white.png'
+  favicon: 'favicon.png'
+
+repo_name: alice-biometrics/capacho
+repo_url: https://github.com/alice-biometrics/capacho
+edit_uri: edit/main/docs/
+
+extra_css:
+- 'css/terminal.css'
+- 'css/tweaks.css'
+- 'css/termynal.css'
+- 'css/custom.css'
+extra_javascript:
+- 'js/redirects.js'
+- 'js/ad.js'
+- 'js/termynal.js'
+- 'js/custom.js'
+
+
+nav:
+- Overview: index.md
+- install.md
+- getting_started.md
+- Contributing to capacho: contributing.md
+- changelog.md
+
+markdown_extensions:
+  - tables
+  - markdown_include.include:
+      base_path: docs
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - mdx_truly_sane_lists
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+plugins:
+  - search
+  - exclude:
+      glob:
+      - _build/*
+      - build/*
+      - requirements/*
+
+extra:
+  social:
+  - icon: fontawesome/brands/github-alt
+    link: https://github.com/alice-biometrics/capacho
+  - icon: fontawesome/brands/twitter
+    link: https://twitter.com/alicebiometrics
+  - icon: fontawesome/brands/linkedin
+    link: https://www.linkedin.com/company/alicebiometrics

@@ -1,0 +1,31 @@
+name: coverage
+
+on:
+  push:
+    paths-ignore:
+      - '*.md'
+      - 'capacho/VERSION'
+    branches:
+      - main
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        cache: pip
+        cache-dependency-path: pyproject.toml
+    - name: Install dependencies
+      run: |
+        pip install lume
+        lume -install
+    - name: Coverage
+      run: lume -coverage
+    - uses: codecov/codecov-action@v2
+      with:
+        files: output/coverage/cobertura_coverage.xml
+        name: capacho
+        fail_ci_if_error: true

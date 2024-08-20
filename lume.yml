@@ -1,0 +1,49 @@
+name: capacho
+
+envs:
+  PACKAGE_NAME: capacho
+
+install:
+  run:
+    - uv pip install -e .[dev]
+    - pre-commit install
+
+uninstall:
+  run:
+    - uv pip uninstall capacho -y
+    - uv pip freeze | xargs uv pip uninstall
+    - uv pip install lume
+
+steps:
+  reinstall:
+    run:
+      - lume -uninstall
+      - lume -install
+  clean:
+    run:
+    - rm -rf *.egg-info
+    - rm -rf .*_cache
+    - find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
+  lint:
+    run:
+      - ruff $PACKAGE_NAME tests
+      - black $PACKAGE_NAME tests --check
+      - isort $PACKAGE_NAME tests --check-only
+      - pyupgrade --py37-plus `find $PACKAGE_NAME tests -name "*.py" -type f ! -name "*test_result_match.py"`
+  check-requirements:
+    run: pip-audit
+  static-analysis:
+    run: mypy $PACKAGE_NAME tests --exclude '.*tests.unit.doc*' --exclude '.*tests.unit.test_result_match*'
+  coverage:
+    run: pytest -c tests/pytest.coverage.ini
+  test:
+    run: pytest -v
+  docs:
+    run: |
+      pip install -e .[doc]
+      mkdocs build
+  check-no-binary-installation:
+    run: |
+      pip install hatch
+      hatch build
+      pip wheel --no-cache-dir $PACKAGE_NAME -w /tmp/ext dist/$PACKAGE_NAME-*.tar.gz
