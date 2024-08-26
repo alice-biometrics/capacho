@@ -16,6 +16,6 @@ jobs:
       package_name: capacho
       version: ${{ needs.get-version.outputs.version }}
     secrets:
-      username: ${{ secrets.PYPI_TOKEN_USERNAME }}
-      password: ${{ secrets.PYPI_TOKEN_PASSWORD_MEIGA }}
+      username: ${{ secrets.PYPI_USERNAME }}
+      password: ${{ secrets.PYPI_PASSWORD }}
       github_access_token: ${{ secrets.PUBLIC_GITHUB_ACCESS_TOKEN }}
