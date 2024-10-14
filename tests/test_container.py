@@ -1,7 +1,6 @@
 import pytest
 
-from capacho import Container, ImplementationConfig, Interface
-from capacho.type_implementation_mapping import TypeImplementationMapping
+from capacho import Container, ImplementationConfig, Interface, TypeImplementationMapping
 
 
 class MyType(Interface): ...
@@ -48,7 +47,7 @@ class TestContainer:
         assert "MyNotRegisteredImpl is not registered in Container for base_class=MyType" in str(excinfo.value)
 
     def should_raise_exception_when_get_a_not_available_base_class_using_error_handler(self):
-        def my_error_handler(impl_class: str) -> None:
+        def my_error_handler(impl_class: str, base_class: str) -> None:
             raise TypeError("MyError Handler")
 
         Container.set_get_error_handler(my_error_handler)
@@ -73,14 +72,14 @@ class TestContainer:
             (
                 [
                     TypeImplementationMapping(
-                        module_startswith="test.test_module", type_implementation="other", startwith=False
+                        module_startswith="test.test_module", type_implementation="other", startswith=False
                     )
                 ],
                 "other",
             ),
             ([TypeImplementationMapping(module_startswith="other_module", type_implementation="plugin")], "base"),
             (
-                [TypeImplementationMapping(module_startswith="test", type_implementation="other", startwith=False)],
+                [TypeImplementationMapping(module_startswith="test", type_implementation="other", startswith=False)],
                 "base",
             ),
         ],
