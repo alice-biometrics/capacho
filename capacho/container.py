@@ -31,7 +31,7 @@ class Container(metaclass=Singleton):
     def _set_type_implementations_mappings(self, mappings: list[TypeImplementationMapping]):
         self.type_implementations_mappings = mappings
 
-    def _set_get_error_handler(self, error_handler: Callable[[str], None]):
+    def _set_get_error_handler(self, error_handler: Callable[[str, str], None]):
         self.get_error_handler = error_handler
 
     def _add_to(
@@ -99,7 +99,7 @@ class Container(metaclass=Singleton):
         available_implementations = Container.available(base_class)
         if impl_class not in available_implementations:
             if self.get_error_handler is not None:
-                self.get_error_handler(impl_class)
+                self.get_error_handler(impl_class, base_class.__name__)
             else:
                 raise TypeError(
                     f"{impl_class} is not registered in Container for base_class={base_class.__name__}."
@@ -127,7 +127,7 @@ class Container(metaclass=Singleton):
         Container()._set_type_implementations_mappings(mappings)
 
     @staticmethod
-    def set_get_error_handler(error_handler: Callable[[str], None]):
+    def set_get_error_handler(error_handler: Callable[[str, str], None]):
         Container()._set_get_error_handler(error_handler)
 
     @staticmethod
