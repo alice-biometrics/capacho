@@ -16,7 +16,7 @@ RegisteredItems = dict[BaseClass, dict[ImplClass, type[Interface]]]
 T = TypeVar("T")
 
 
-def get_index_base_class(klass: type[Interface]) -> int:
+def default_get_index_base_class(klass: type[Interface]) -> int:
     # MyImpl -> MyAbstraction -> Interface -> ABC -> Object
     #   -5          -4            -3        -2       -1
     #                ^----------------------------------------------- index_base_class_interface
@@ -34,6 +34,9 @@ class Container(metaclass=Singleton):
     def _set_get_error_handler(self, error_handler: Callable[[str, str], None]):
         self.get_error_handler = error_handler
 
+    def _set_index_base_class_map(self, get_index_base_class: Callable[[type[Interface]], int]):
+        self.get_index_base_class = get_index_base_class
+
     def _add_to(
         self,
         klass: type[Interface],
@@ -41,7 +44,7 @@ class Container(metaclass=Singleton):
         aliases: list[str] | None = None,
     ):
         name = klass.__name__
-        base_name = base_class.__name__ if base_class else klass.__mro__[get_index_base_class(klass)].__name__
+        base_name = base_class.__name__ if base_class else klass.__mro__[self.get_index_base_class(klass)].__name__
 
         if aliases is None:
             aliases = []
@@ -113,6 +116,7 @@ class Container(metaclass=Singleton):
         self.type_implementations = {}
         self.type_implementations_mappings = []
         self.get_error_handler = None
+        self.get_index_base_class = default_get_index_base_class
 
     @staticmethod
     def add_to(
@@ -129,6 +133,10 @@ class Container(metaclass=Singleton):
     @staticmethod
     def set_get_error_handler(error_handler: Callable[[str, str], None]):
         Container()._set_get_error_handler(error_handler)
+
+    @staticmethod
+    def set_index_base_class_map(get_index_base_class: Callable[[type[Interface]], int]):
+        Container()._set_index_base_class_map(get_index_base_class)
 
     @staticmethod
     def available(base_class: type[Interface]) -> list[str]:
